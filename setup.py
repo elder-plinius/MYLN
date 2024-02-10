@@ -1,14 +1,14 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='myln_compression',
+    name='myln',
     version='0.1.0',
-    author='Your Name',
-    author_email='your.email@example.com',
+    author='Pliny',
+    author_email='plinius8@proton.me',
     description='A simple text compression package for Python.',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
-    url='https://github.com/yourusername/myln_compression',
+    url='https://github.com/elder-plinius/MYLN',
     packages=find_packages(),
     classifiers=[
         'Development Status :: 3 - Alpha',
