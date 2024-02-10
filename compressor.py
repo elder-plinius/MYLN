@@ -1,33 +1,41 @@
-import re
-from string import punctuation
+from abbreviations import Abbreviations
 
-class MylnCompressor:
+class Compressor:
     vowels = "aeiouAEIOU"
-    abbreviations = {
-        "as soon as possible": "ASAP",
-        "for your information": "FYI",
-    }
-    essential_short_words = {"with", "from", "they", "have"}
 
     @staticmethod
     def compress_word(word):
-        if word.upper() == word or word.lower() in MylnCompressor.essential_short_words:
+        """Compress a single word by removing non-initial vowels from words longer than three characters, preserving readability."""
+        # Preserve words shorter than 4 characters or in uppercase (considered acronyms)
+        if len(word) <= 3 or word.upper() == word:
             return word
-        
-        first_vowel_index = next((i for i, char in enumerate(word) if char in MylnCompressor.vowels), None)
-        
-        if first_vowel_index is not None:
-            compressed_word = [char for i, char in enumerate(word) if i == first_vowel_index or char not in MylnCompressor.vowels]
-        else:
-            compressed_word = [char for char in word]
 
-        return ''.join(compressed_word)
+        # Preserve the first vowel found and subsequent consonants, remove other vowels
+        new_word = []
+        vowel_found = False
+        for char in word:
+            if char in Compressor.vowels:
+                if not vowel_found:
+                    new_word.append(char)  # Keep the first vowel encountered
+                    vowel_found = True
+            else:
+                new_word.append(char)  # Keep consonants
+        return ''.join(new_word)
 
     @classmethod
     def compress_text(cls, input_text):
-        for phrase, abbreviation in cls.abbreviations.items():
-            input_text = re.sub(r'\b' + phrase + r'\b', abbreviation, input_text, flags=re.IGNORECASE)
+        """Compress a text string using abbreviations and selective vowel removal."""
+        # First, apply abbreviations to the input text
+        input_text = Abbreviations.apply_abbreviations(input_text)
+        
+        # Split text into words, compress them, and rejoin with spaces
+        words = input_text.split()
+        compressed_words = [cls.compress_word(word) for word in words]
+        return " ".join(compressed_words)
 
-        words = re.findall(r'\w+|[^\w\s]', input_text, re.UNICODE)
-        compressed_words = [cls.compress_word(word) if word.lower() not in cls.abbreviations.values() else word for word in words]
-        return "".join(compressed_words)
+# Example usage
+if __name__ == "__main__":
+    input_text = "Alice and Bob are planning to visit the university as soon as possible for your information."
+    compressed_text = Compressor.compress_text(input_text)
+    print("Original Text:", input_text)
+    print("Compressed Text:", compressed_text)
