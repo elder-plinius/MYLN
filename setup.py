@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='myln',
-    version='0.1.0',
+    version='0.1.1',
     author='Pliny',
     author_email='plinius8@proton.me',
     description='A simple text compression package for Python.',
