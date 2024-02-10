@@ -1,4 +1,4 @@
-from abbreviations import Abbreviations
+from .abbreviations import Abbreviations
 
 class Compressor:
     vowels = "aeiouAEIOU"
