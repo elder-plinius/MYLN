@@ -15,10 +15,10 @@ pip install myln
 To use the text compression functionality, import the `Compressor` from the package and use the `compress_text` method:
 
 ```python
-from myln import MylnCompressor
+from myln import Compressor
 
 input_text = "This is a test message, to see how well a string of can be compressed."
-compressed_text = MylnCompressor.compress_text(input_text)
+compressed_text = Compressor.compress_text(input_text)
 print(compressed_text)
 ```
 
