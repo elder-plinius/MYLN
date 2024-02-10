@@ -1,4 +1,4 @@
-# Myln Compression Package
+# Myln Package
 
 A simple Python package for compressing text by removing non-essential vowels and applying common abbreviations.
 
@@ -7,17 +7,17 @@ A simple Python package for compressing text by removing non-essential vowels an
 Install the package using pip:
 
 ```bash
-pip install myln-compression
+pip install myln
 ```
 
 ## Usage
 
-To use the text compression functionality, import the `MylnCompressor` from the package and use the `compress_text` method:
+To use the text compression functionality, import the `Compressor` from the package and use the `compress_text` method:
 
 ```python
-from myln_compression import MylnCompressor
+from myln import MylnCompressor
 
-input_text = "This is a test message, to see how as soon as possible can be compressed."
+input_text = "This is a test message, to see how well a string of can be compressed."
 compressed_text = MylnCompressor.compress_text(input_text)
 print(compressed_text)
 ```
