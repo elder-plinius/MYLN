@@ -6,6 +6,7 @@ class Abbreviations:
         "appointment": "appt",
         "approximately": "approx",
         "department": "dept",
+        "hello": "hi",
         "information": "info",
         "introduction": "intro",
         "number": "#",
